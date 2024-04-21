@@ -13,9 +13,9 @@ export interface ITopArtistsItemApiResponse {
     followers?: ITopArtistsItemFollowersCommon;
     genres?: string[];
     href?: string;
-    id?: string;
+    id: string;
     images?: ITopArtistsItemImageCommon[];
-    name?: string;
+    name: string;
     popularity?: number;
     type?: string;
     uri?: string;

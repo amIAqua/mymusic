@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardStore } from 'app/store/dashboard/dashboard-store';
-import { ArtistsListComponent } from 'app/components/dashboard/components/partials/topArtists/partials/artistsList/artists-list.component';
+import {
+    ArtistsListComponent
+} from 'app/components/dashboard/components/partials/topArtists/partials/artistsList/artists-list.component';
 
 @Component({
     imports: [ArtistsListComponent],
