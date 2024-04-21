@@ -10,11 +10,9 @@ import { AuthStore } from 'app/store/auth/auth.store';
   styleUrl: './base-header.component.css'
 })
 export class BaseHeaderComponent {
-  public tokenData = this.authStore.tokenData();
-
   public constructor(public authStore: AuthStore) {}
 
-  public getToken() {
-    this.authStore.refreshAccessToken();
+  public authorize() {
+    this.authStore.redirectToAuthCallback();
   }
 }

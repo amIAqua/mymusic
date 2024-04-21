@@ -25,4 +25,16 @@ export class AppConfigService {
     public getSpotifyAuthGrantType(): string {
         return environment.SPOTIFY_AUTH_GRANT_TYPE;
     }
+
+    public getSpotifyAuthRedirectUri(): string {
+        return environment.SPOTIFY_AUTH_REDIRECT_URI;
+    }
+
+    public getSpotifyAuthBaseUrl(): string {
+        return environment.SPOTIFY_AUTH_BASE_URL;
+    }
+
+    public getSpotifyAuthDataScopes(): string {
+        return environment.SPOTIFY_AUTH_DATA_SCOPES;
+    }
 }

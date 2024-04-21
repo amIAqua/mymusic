@@ -7,7 +7,8 @@ import { ITopArtists } from 'app/modules/api/clients/dashboard/interfaces/topArt
 })
 export class DashboardStore {
     public topArtistsData = signal<ITopArtists | null>(null);
-    public topArtists = computed(() => this.topArtistsData()?.items);
+    // public topArtistsData = signal<ITopArtists | null>(null);
+    public topArtists = computed(() => this.topArtistsData()?.items || []);
 
     public constructor(
         private readonly dashboardApiService: DashboardApiService,
@@ -15,7 +16,13 @@ export class DashboardStore {
 
     public loadTopArtists(): void {
         this.dashboardApiService.loadUserTopArtists(10, 0).subscribe((data) => {
-            console.log(data);
+            this.topArtistsData.set(data);
         });
     }
+
+    // public loadTopTracks(): void {
+    //     this.dashboardApiService.loadUserTopTracks(10, 0).subscribe((data) => {
+    //         this.topArtistsData.set(data);
+    //     });
+    // }
 }

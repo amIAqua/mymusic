@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookiesService } from 'app/modules/cookies/services/cookies.service';
 import { AppConfigService } from 'app/modules/appConfig/services/app-config.service';
+import { ITopArtistsApiResponse } from 'app/modules/api/clients/dashboard/interfaces/topArtists/fromApi/ITopArtistsApiResponse';
 
 @Injectable({
     providedIn: 'root',
@@ -15,11 +16,14 @@ export class DashboardApiRepository {
         private readonly appConfigService: AppConfigService,
     ) {}
 
-    public loadUserTopArtists(
-        limit?: number, offset?: number, timeRange?: string,
-    ): Observable<any> {
-        return this.httpClient.get<any>(
-            `${this.appConfigService.getSpotifyApiUrl()}/me/top/artists`,
+    public loadUserTopItemsByType<T>(
+        type: 'artists' | 'tracks',
+        limit?: number,
+        offset?: number,
+        timeRange?: string,
+    ): Observable<T> {
+        return this.httpClient.get<T>(
+            `${this.appConfigService.getSpotifyApiUrl()}/me/top/${type}`,
             {
                 params: {
                     ...(!!limit && { limit }),
@@ -28,7 +32,7 @@ export class DashboardApiRepository {
                 },
                 headers: {
                     Authorization: `
-                        Bearer ${this.cookiesService.getCookie('oauth_cookie')}
+                        Bearer ${this.cookiesService.getCookie('access_token')}
                     `,
                 }
             },
